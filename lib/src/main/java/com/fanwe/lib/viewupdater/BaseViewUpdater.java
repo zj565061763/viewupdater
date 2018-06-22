@@ -114,7 +114,7 @@ public abstract class BaseViewUpdater implements ViewUpdater
     }
 
     @Override
-    public boolean isStarted()
+    public final boolean isStarted()
     {
         if (getView() == null)
             setStarted(false);
