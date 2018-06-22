@@ -102,10 +102,10 @@ public interface ViewUpdater
         /**
          * 设置的view变化回调
          *
-         * @param newView
          * @param oldView
+         * @param newView
          * @param updater
          */
-        void onViewChanged(View newView, View oldView, ViewUpdater updater);
+        void onViewChanged(View oldView, View newView, ViewUpdater updater);
     }
 }

@@ -69,13 +69,13 @@ public abstract class BaseViewUpdater implements ViewUpdater
 
             mView = view == null ? null : new WeakReference<>(view);
 
-            onViewChanged(view, old);
+            onViewChanged(old, view);
             if (mOnViewChangeCallback != null)
-                mOnViewChangeCallback.onViewChanged(view, old, this);
+                mOnViewChangeCallback.onViewChanged(old, view, this);
         }
     }
 
-    protected void onViewChanged(View newView, View oldView)
+    protected void onViewChanged(View oldView, View newView)
     {
     }
 

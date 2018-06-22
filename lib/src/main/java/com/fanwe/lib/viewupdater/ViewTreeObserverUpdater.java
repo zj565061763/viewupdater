@@ -21,9 +21,9 @@ import android.view.ViewTreeObserver;
 public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
 {
     @Override
-    protected void onViewChanged(View newView, View oldView)
+    protected void onViewChanged(View oldView, View newView)
     {
-        super.onViewChanged(newView, oldView);
+        super.onViewChanged(oldView, newView);
         if (oldView != null)
             oldView.removeOnAttachStateChangeListener(mOnAttachStateChangeListener);
     }
