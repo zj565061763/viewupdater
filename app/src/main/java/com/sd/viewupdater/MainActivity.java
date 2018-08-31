@@ -1,4 +1,4 @@
-package com.fanwe.viewupdater;
+package com.sd.viewupdater;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,8 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.fanwe.lib.viewupdater.ViewUpdater;
-import com.fanwe.lib.viewupdater.impl.OnPreDrawUpdater;
+import com.sd.lib.viewupdater.ViewUpdater;
+import com.sd.lib.viewupdater.impl.OnPreDrawUpdater;
 
 
 public class MainActivity extends AppCompatActivity
