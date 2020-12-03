@@ -5,9 +5,7 @@ import android.view.View;
 import com.sd.lib.viewupdater.BaseViewUpdater;
 
 /**
- * 设置监听对象到view中来实现实时刷新
- * <p>
- * 监听对象：{@link View.OnLayoutChangeListener}
+ * 通过{@link View.OnLayoutChangeListener}来实现更新
  */
 public class OnLayoutChangeUpdater extends BaseViewUpdater
 {

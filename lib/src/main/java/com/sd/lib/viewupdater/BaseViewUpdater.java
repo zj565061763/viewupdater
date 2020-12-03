@@ -108,14 +108,14 @@ public abstract class BaseViewUpdater implements ViewUpdater
     }
 
     /**
-     * 开始实时更新
+     * 开始监听
      *
      * @return true-成功开始
      */
     protected abstract boolean startImplemention();
 
     /**
-     * 停止实时更新
+     * 停止监听
      */
     protected abstract void stopImplemention();
 }

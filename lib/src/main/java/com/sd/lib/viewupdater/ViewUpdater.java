@@ -5,7 +5,7 @@ import android.view.View;
 public interface ViewUpdater
 {
     /**
-     * 设置要更新回调对象
+     * 设置更新回调对象
      *
      * @param updatable
      */

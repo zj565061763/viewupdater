@@ -5,9 +5,7 @@ import android.view.ViewTreeObserver;
 import com.sd.lib.viewupdater.ViewTreeObserverUpdater;
 
 /**
- * 设置监听对象到view中来实现实时刷新
- * <p>
- * 监听对象：{@link ViewTreeObserver.OnPreDrawListener}
+ * 通过{@link ViewTreeObserver.OnPreDrawListener}来实现更新
  */
 public class OnPreDrawUpdater extends ViewTreeObserverUpdater
 {
