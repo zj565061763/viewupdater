@@ -5,14 +5,14 @@ import android.view.View;
 public interface ViewUpdater
 {
     /**
-     * 设置要实时更新的对象
+     * 设置要更新回调对象
      *
      * @param updatable
      */
     void setUpdatable(Updatable updatable);
 
     /**
-     * 通知设置的对象{@link #setUpdatable(Updatable)}进行更新
+     * 通知设置的回调对象{@link #setUpdatable(Updatable)}进行更新
      */
     void notifyUpdatable();
 
@@ -45,19 +45,19 @@ public interface ViewUpdater
     void setView(View view);
 
     /**
-     * 开始实时更新
+     * 开始监听
      *
      * @return true-成功开始
      */
     boolean start();
 
     /**
-     * 停止实时更新
+     * 停止监听
      */
     void stop();
 
     /**
-     * 是否已经开始实时更新
+     * 是否已经开始监听
      *
      * @return
      */
@@ -66,7 +66,7 @@ public interface ViewUpdater
     interface Updatable
     {
         /**
-         * 触发更新
+         * 更新回调
          */
         void update();
     }
@@ -74,7 +74,7 @@ public interface ViewUpdater
     interface OnStateChangeCallback
     {
         /**
-         * 是否已经开始实时更新状态变化
+         * 是否已经开始监听状态变化
          *
          * @param started
          * @param updater
