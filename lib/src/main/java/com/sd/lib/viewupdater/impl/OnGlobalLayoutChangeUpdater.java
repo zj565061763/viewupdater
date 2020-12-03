@@ -19,10 +19,7 @@ public class OnGlobalLayoutChangeUpdater extends ViewTreeObserverUpdater
     @Override
     protected void unregister(ViewTreeObserver observer)
     {
-        if (Build.VERSION.SDK_INT >= 16)
-            observer.removeOnGlobalLayoutListener(mListener);
-        else
-            observer.removeGlobalOnLayoutListener(mListener);
+        observer.removeOnGlobalLayoutListener(mListener);
     }
 
     private final ViewTreeObserver.OnGlobalLayoutListener mListener = new ViewTreeObserver.OnGlobalLayoutListener()

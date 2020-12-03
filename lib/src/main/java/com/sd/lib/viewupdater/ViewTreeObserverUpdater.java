@@ -19,7 +19,7 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
         public void onViewAttachedToWindow(View v)
         {
             if (isStarted())
-                startImplemention();
+                startImpl(getView());
         }
 
         @Override
@@ -43,9 +43,8 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
     }
 
     @Override
-    protected boolean startImplemention()
+    protected final boolean startImpl(View view)
     {
-        final View view = getView();
         if (view == null)
             return false;
 
@@ -59,9 +58,8 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
     }
 
     @Override
-    protected void stopImplemention()
+    protected final void stopImpl(View view)
     {
-        final View view = getView();
         if (view == null)
             return;
 

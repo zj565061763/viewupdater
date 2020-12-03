@@ -10,9 +10,8 @@ import com.sd.lib.viewupdater.BaseViewUpdater;
 public class OnLayoutChangeUpdater extends BaseViewUpdater
 {
     @Override
-    protected boolean startImplemention()
+    protected boolean startImpl(View view)
     {
-        final View view = getView();
         if (view == null)
             return false;
 
@@ -22,9 +21,8 @@ public class OnLayoutChangeUpdater extends BaseViewUpdater
     }
 
     @Override
-    protected void stopImplemention()
+    protected void stopImpl(View view)
     {
-        final View view = getView();
         if (view == null)
             return;
 

@@ -70,16 +70,26 @@ public abstract class BaseViewUpdater implements ViewUpdater
         if (isStarted())
             return true;
 
-        setStarted(startImplemention());
+        final View view = getView();
+        if (view == null)
+            return false;
 
-        return isStarted();
+        final boolean startImpl = startImpl(view);
+        setStarted(startImpl);
+        return startImpl;
     }
 
     @Override
     public final void stop()
     {
-        stopImplemention();
-        setStarted(false);
+        if (mIsStarted)
+        {
+            final View view = getView();
+            if (view != null)
+                stopImpl(view);
+
+            setStarted(false);
+        }
     }
 
     private final void setStarted(boolean started)
@@ -110,12 +120,15 @@ public abstract class BaseViewUpdater implements ViewUpdater
     /**
      * 开始监听
      *
+     * @param view
      * @return true-成功开始
      */
-    protected abstract boolean startImplemention();
+    protected abstract boolean startImpl(View view);
 
     /**
      * 停止监听
+     *
+     * @param view
      */
-    protected abstract void stopImplemention();
+    protected abstract void stopImpl(View view);
 }
