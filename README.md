@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        // 设置实时监听状态变更回调
+        // 设置状态变更回调
         mUpdater.setOnStateChangeCallback(new ViewUpdater.OnStateChangeCallback()
         {
             @Override
@@ -46,18 +46,18 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        // 设置要实时更新的对象
+        // 设置更新回调对象
         mUpdater.setUpdatable(new ViewUpdater.Updatable()
         {
             @Override
             public void update()
             {
-                // 实时获得选中状态
+                // 获得选中状态
                 Log.i(TAG, "update:" + mButton.isSelected());
             }
         });
 
-        // 设置监听哪个view来实现实时更新
+        // 设置监听哪个view
         mUpdater.setView(mButton);
     }
 
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onResume();
 
-        //  开始实时更新
+        // 开始监听
         mUpdater.start();
     }
 
@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onStop();
 
-        // 停止实时更新
+        // 停止监听
         mUpdater.stop();
     }
 }
