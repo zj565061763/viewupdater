@@ -15,7 +15,6 @@ public class OnLayoutChangeUpdater extends BaseViewUpdater
         if (view == null)
             return false;
 
-        view.removeOnLayoutChangeListener(mListener);
         view.addOnLayoutChangeListener(mListener);
         return true;
     }
