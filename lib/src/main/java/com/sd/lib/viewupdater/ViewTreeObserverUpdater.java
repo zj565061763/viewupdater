@@ -47,12 +47,13 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
             return false;
 
         final ViewTreeObserver observer = view.getViewTreeObserver();
-        if (!observer.isAlive())
-            return false;
-
-        unregister(observer);
-        register(observer);
-        return true;
+        if (observer.isAlive())
+        {
+            unregister(observer);
+            register(observer);
+            return true;
+        }
+        return false;
     }
 
     @Override
