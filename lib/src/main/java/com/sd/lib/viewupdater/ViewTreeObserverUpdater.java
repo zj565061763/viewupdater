@@ -3,28 +3,26 @@ package com.sd.lib.viewupdater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import java.lang.ref.WeakReference;
-
 public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
 {
-    private WeakReference<ViewTreeObserver> mGlobalViewTreeObserver;
-
-    private ViewTreeObserver getGlobalViewTreeObserver()
-    {
-        return mGlobalViewTreeObserver == null ? null : mGlobalViewTreeObserver.get();
-    }
-
     private final View.OnAttachStateChangeListener mOnAttachStateChangeListener = new View.OnAttachStateChangeListener()
     {
         @Override
         public void onViewAttachedToWindow(View v)
         {
-            mGlobalViewTreeObserver = new WeakReference<>(v.getViewTreeObserver());
+            if (v != getView())
+                throw new RuntimeException("v != getView()");
+
+            startImpl(v);
         }
 
         @Override
         public void onViewDetachedFromWindow(View v)
         {
+            if (v != getView())
+                throw new RuntimeException("v != getView()");
+
+            stopImpl(v);
         }
     };
 
@@ -66,10 +64,6 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
         final ViewTreeObserver observer = view.getViewTreeObserver();
         if (observer.isAlive())
             unregister(observer);
-
-        final ViewTreeObserver globalObserver = getGlobalViewTreeObserver();
-        if (globalObserver != null && globalObserver.isAlive())
-            unregister(globalObserver);
     }
 
     /**
