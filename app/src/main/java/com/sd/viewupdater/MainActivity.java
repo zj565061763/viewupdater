@@ -33,26 +33,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        // 设置状态变更回调
-        mUpdater.setOnStateChangeCallback(new ViewUpdater.OnStateChangeCallback()
-        {
-            @Override
-            public void onStateChanged(boolean started, ViewUpdater updater)
-            {
-                Log.i(TAG, "onStateChanged:" + started);
-            }
-        });
-
-        // 设置view变化回调
-        mUpdater.setOnViewChangeCallback(new ViewUpdater.OnViewChangeCallback()
-        {
-            @Override
-            public void onViewChanged(View oldView, View newView, ViewUpdater updater)
-            {
-                Log.i(TAG, "onViewChanged:" + oldView + "," + newView);
-            }
-        });
-
         // 设置更新回调对象
         mUpdater.setUpdatable(new ViewUpdater.Updatable()
         {

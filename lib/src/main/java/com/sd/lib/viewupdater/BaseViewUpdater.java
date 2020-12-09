@@ -10,9 +10,6 @@ public abstract class BaseViewUpdater implements ViewUpdater
     private Updatable mUpdatable;
     private WeakReference<View> mView;
 
-    private OnStateChangeCallback mOnStateChangeCallback;
-    private OnViewChangeCallback mOnViewChangeCallback;
-
     @Override
     public final void setUpdatable(Updatable updatable)
     {
@@ -24,18 +21,6 @@ public abstract class BaseViewUpdater implements ViewUpdater
     {
         if (mUpdatable != null)
             mUpdatable.update();
-    }
-
-    @Override
-    public final void setOnStateChangeCallback(OnStateChangeCallback callback)
-    {
-        mOnStateChangeCallback = callback;
-    }
-
-    @Override
-    public final void setOnViewChangeCallback(OnViewChangeCallback callback)
-    {
-        mOnViewChangeCallback = callback;
     }
 
     @Override
@@ -53,15 +38,8 @@ public abstract class BaseViewUpdater implements ViewUpdater
             stop();
 
             mView = view == null ? null : new WeakReference<>(view);
-
             onViewChanged(old, view);
-            if (mOnViewChangeCallback != null)
-                mOnViewChangeCallback.onViewChanged(old, view, this);
         }
-    }
-
-    protected void onViewChanged(View oldView, View newView)
-    {
     }
 
     @Override
@@ -97,11 +75,12 @@ public abstract class BaseViewUpdater implements ViewUpdater
         if (mIsStarted != started)
         {
             mIsStarted = started;
-
             onStateChanged(started);
-            if (mOnStateChangeCallback != null)
-                mOnStateChangeCallback.onStateChanged(started, this);
         }
+    }
+
+    protected void onViewChanged(View oldView, View newView)
+    {
     }
 
     protected void onStateChanged(boolean started)
