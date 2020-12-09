@@ -36,27 +36,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        // 设置view变化回调
-        mUpdater.setOnViewChangeCallback(new ViewUpdater.OnViewChangeCallback()
-        {
-            @Override
-            public void onViewChanged(View oldView, View newView, ViewUpdater updater)
-            {
-                Log.i(TAG, "onViewChanged:" + oldView + "," + newView);
-            }
-        });
-
-        // 设置更新回调对象
-        mUpdater.setUpdatable(new ViewUpdater.Updatable()
-        {
-            @Override
-            public void update()
-            {
-                // 获得选中状态
-                Log.i(TAG, "update:" + mButton.isSelected());
-            }
-        });
-
         // 设置监听哪个view
         mUpdater.setView(mButton);
     }
@@ -77,6 +56,64 @@ public class MainActivity extends AppCompatActivity
 
         // 停止监听
         mUpdater.stop();
+    }
+}
+```
+# 接口
+```java
+public interface ViewUpdater
+{
+    /**
+     * 设置更新回调对象
+     *
+     * @param updatable
+     */
+    void setUpdatable(Updatable updatable);
+
+    /**
+     * 通知设置的回调对象{@link #setUpdatable(Updatable)}进行更新
+     */
+    void notifyUpdatable();
+
+    /**
+     * 返回设置的view
+     *
+     * @return
+     */
+    View getView();
+
+    /**
+     * 设置view
+     *
+     * @param view
+     */
+    void setView(View view);
+
+    /**
+     * 开始监听
+     *
+     * @return true-成功开始
+     */
+    boolean start();
+
+    /**
+     * 停止监听
+     */
+    void stop();
+
+    /**
+     * 是否已经开始监听
+     *
+     * @return
+     */
+    boolean isStarted();
+
+    interface Updatable
+    {
+        /**
+         * 更新回调
+         */
+        void update();
     }
 }
 ```
