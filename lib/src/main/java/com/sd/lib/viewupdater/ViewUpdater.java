@@ -31,6 +31,13 @@ public interface ViewUpdater
     void setView(View view);
 
     /**
+     * 是否已经开始监听
+     *
+     * @return
+     */
+    boolean isStarted();
+
+    /**
      * 开始监听
      *
      * @return true-成功开始
@@ -41,13 +48,6 @@ public interface ViewUpdater
      * 停止监听
      */
     void stop();
-
-    /**
-     * 是否已经开始监听
-     *
-     * @return
-     */
-    boolean isStarted();
 
     interface Updatable
     {

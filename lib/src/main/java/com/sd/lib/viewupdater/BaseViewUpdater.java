@@ -43,6 +43,15 @@ public abstract class BaseViewUpdater implements ViewUpdater
     }
 
     @Override
+    public final boolean isStarted()
+    {
+        if (getView() == null)
+            setStarted(false);
+
+        return mIsStarted;
+    }
+
+    @Override
     public final boolean start()
     {
         if (isStarted())
@@ -85,15 +94,6 @@ public abstract class BaseViewUpdater implements ViewUpdater
 
     protected void onStateChanged(boolean started)
     {
-    }
-
-    @Override
-    public final boolean isStarted()
-    {
-        if (getView() == null)
-            setStarted(false);
-
-        return mIsStarted;
     }
 
     /**
