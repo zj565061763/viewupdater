@@ -5,6 +5,20 @@ import android.view.ViewTreeObserver;
 
 public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
 {
+    @Override
+    protected void onStateChanged(boolean started)
+    {
+        super.onStateChanged(started);
+
+        final View view = getView();
+        if (view != null)
+        {
+            view.removeOnAttachStateChangeListener(mOnAttachStateChangeListener);
+            if (started)
+                view.addOnAttachStateChangeListener(mOnAttachStateChangeListener);
+        }
+    }
+
     private final View.OnAttachStateChangeListener mOnAttachStateChangeListener = new View.OnAttachStateChangeListener()
     {
         @Override
@@ -25,20 +39,6 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
             stopImpl(v);
         }
     };
-
-    @Override
-    protected void onStateChanged(boolean started)
-    {
-        super.onStateChanged(started);
-
-        final View view = getView();
-        if (view != null)
-        {
-            view.removeOnAttachStateChangeListener(mOnAttachStateChangeListener);
-            if (started)
-                view.addOnAttachStateChangeListener(mOnAttachStateChangeListener);
-        }
-    }
 
     @Override
     protected final boolean startImpl(View view)
