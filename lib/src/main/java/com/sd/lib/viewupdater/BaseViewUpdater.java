@@ -19,8 +19,11 @@ public abstract class BaseViewUpdater implements ViewUpdater
     @Override
     public final void notifyUpdatable()
     {
-        if (mUpdatable != null)
-            mUpdatable.update();
+        if (isStarted())
+        {
+            if (mUpdatable != null)
+                mUpdatable.update();
+        }
     }
 
     @Override
