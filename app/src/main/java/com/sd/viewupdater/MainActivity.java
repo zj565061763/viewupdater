@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
 
         // 设置监听哪个view
         mUpdater.setView(mButton);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         // 开始监听
         mUpdater.start();
     }
