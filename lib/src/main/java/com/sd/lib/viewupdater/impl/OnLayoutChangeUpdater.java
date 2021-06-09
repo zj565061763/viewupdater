@@ -11,13 +11,13 @@ import com.sd.lib.viewupdater.BaseViewUpdater;
  */
 public class OnLayoutChangeUpdater extends BaseViewUpdater {
     @Override
-    protected boolean startImpl(@NonNull View view) {
+    protected final boolean startImpl(@NonNull View view) {
         view.addOnLayoutChangeListener(mListener);
         return true;
     }
 
     @Override
-    protected void stopImpl(@NonNull View view) {
+    protected final void stopImpl(@NonNull View view) {
         view.removeOnLayoutChangeListener(mListener);
     }
 
