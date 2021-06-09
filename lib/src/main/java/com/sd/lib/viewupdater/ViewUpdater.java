@@ -18,6 +18,7 @@ public interface ViewUpdater {
     /**
      * 返回设置的view
      */
+    @Nullable
     View getView();
 
     /**
