@@ -59,7 +59,8 @@ public abstract class BaseViewUpdater implements ViewUpdater {
 
         final boolean startImpl = startImpl(view);
         setStarted(startImpl);
-        return startImpl;
+
+        return mIsStarted;
     }
 
     @Override
