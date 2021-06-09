@@ -3,9 +3,11 @@ package com.sd.lib.viewupdater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import androidx.annotation.CallSuper;
 import androidx.annotation.NonNull;
 
 public abstract class ViewTreeObserverUpdater extends BaseViewUpdater {
+    @CallSuper
     @Override
     protected void onStateChanged(boolean started) {
         super.onStateChanged(started);
