@@ -7,7 +7,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private Button mButton;
-    private final ViewUpdater mUpdater = new OnPreDrawUpdater();
+    private final ViewUpdater mUpdater = new OnPreDrawUpdater() {
+        @Override
+        protected void onStateChanged(boolean started) {
+            super.onStateChanged(started);
+            Log.i(TAG, "onStateChanged started:" + started);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void update() {
                 // 获得选中状态
-                Log.i(TAG, "update:" + mButton.isSelected());
+                final boolean isSelected = mButton.isSelected();
+                mButton.setTextColor(isSelected ? Color.RED : Color.BLACK);
+                Log.i(TAG, "update isSelected:" + isSelected);
             }
         });
 
