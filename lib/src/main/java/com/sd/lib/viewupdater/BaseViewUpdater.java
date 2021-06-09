@@ -2,6 +2,9 @@ package com.sd.lib.viewupdater;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import java.lang.ref.WeakReference;
 
 public abstract class BaseViewUpdater implements ViewUpdater {
@@ -10,7 +13,7 @@ public abstract class BaseViewUpdater implements ViewUpdater {
     private WeakReference<View> mView;
 
     @Override
-    public final void setUpdatable(Updatable updatable) {
+    public final void setUpdatable(@Nullable Updatable updatable) {
         mUpdatable = updatable;
     }
 
@@ -23,13 +26,14 @@ public abstract class BaseViewUpdater implements ViewUpdater {
         }
     }
 
+    @Nullable
     @Override
     public final View getView() {
         return mView == null ? null : mView.get();
     }
 
     @Override
-    public final void setView(View view) {
+    public final void setView(@Nullable View view) {
         final View old = getView();
         if (old != view) {
             stop();
@@ -75,14 +79,14 @@ public abstract class BaseViewUpdater implements ViewUpdater {
         }
     }
 
-    private final void setStarted(boolean started) {
+    private void setStarted(boolean started) {
         if (mIsStarted != started) {
             mIsStarted = started;
             onStateChanged(started);
         }
     }
 
-    protected void onViewChanged(View oldView, View newView) {
+    protected void onViewChanged(@Nullable View oldView, @Nullable View newView) {
     }
 
     protected void onStateChanged(boolean started) {
@@ -91,15 +95,12 @@ public abstract class BaseViewUpdater implements ViewUpdater {
     /**
      * 开始监听
      *
-     * @param view
      * @return true-成功开始
      */
-    protected abstract boolean startImpl(View view);
+    protected abstract boolean startImpl(@NonNull View view);
 
     /**
      * 停止监听
-     *
-     * @param view
      */
-    protected abstract void stopImpl(View view);
+    protected abstract void stopImpl(@NonNull View view);
 }
