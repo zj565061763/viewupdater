@@ -3,11 +3,12 @@ package com.sd.lib.viewupdater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import androidx.annotation.NonNull;
+
 public abstract class ViewTreeObserverUpdater extends BaseViewUpdater {
     @Override
     protected void onStateChanged(boolean started) {
         super.onStateChanged(started);
-
         final View view = getView();
         if (view != null) {
             view.removeOnAttachStateChangeListener(mOnAttachStateChangeListener);
@@ -20,29 +21,21 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater {
     private final View.OnAttachStateChangeListener mOnAttachStateChangeListener = new View.OnAttachStateChangeListener() {
         @Override
         public void onViewAttachedToWindow(View v) {
-            if (v != getView()) {
-                throw new RuntimeException("v != getView()");
+            if (v == getView()) {
+                startImpl(v);
             }
-
-            startImpl(v);
         }
 
         @Override
         public void onViewDetachedFromWindow(View v) {
-            if (v != getView()) {
-                throw new RuntimeException("v != getView()");
+            if (v == getView()) {
+                stopImpl(v);
             }
-
-            stopImpl(v);
         }
     };
 
     @Override
-    protected final boolean startImpl(View view) {
-        if (view == null) {
-            return false;
-        }
-
+    protected final boolean startImpl(@NonNull View view) {
         final ViewTreeObserver observer = view.getViewTreeObserver();
         if (observer.isAlive()) {
             unregister(observer);
@@ -53,11 +46,7 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater {
     }
 
     @Override
-    protected final void stopImpl(View view) {
-        if (view == null) {
-            return;
-        }
-
+    protected final void stopImpl(@NonNull View view) {
         final ViewTreeObserver observer = view.getViewTreeObserver();
         if (observer.isAlive()) {
             unregister(observer);
@@ -66,15 +55,11 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater {
 
     /**
      * 注册监听
-     *
-     * @param observer
      */
-    protected abstract void register(ViewTreeObserver observer);
+    protected abstract void register(@NonNull ViewTreeObserver observer);
 
     /**
      * 取消注册监听
-     *
-     * @param observer
      */
-    protected abstract void unregister(ViewTreeObserver observer);
+    protected abstract void unregister(@NonNull ViewTreeObserver observer);
 }
