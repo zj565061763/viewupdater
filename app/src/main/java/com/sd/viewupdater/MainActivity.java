@@ -1,5 +1,6 @@
 package com.sd.viewupdater;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -34,7 +35,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void update() {
                 // 获得选中状态
-                Log.i(TAG, "update:" + mButton.isSelected());
+                final boolean isSelected = mButton.isSelected();
+                mButton.setTextColor(isSelected ? Color.RED : Color.BLACK);
+                Log.i(TAG, "update isSelected:" + isSelected);
             }
         });
 
