@@ -11,7 +11,7 @@ import com.sd.lib.viewupdater.ViewUpdater;
 import com.sd.lib.viewupdater.impl.OnPreDrawUpdater;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private Button mButton;
     private final ViewUpdater mUpdater = new OnPreDrawUpdater();
@@ -40,12 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         // 设置监听哪个view
         mUpdater.setView(mButton);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
         // 开始监听
         mUpdater.start();
     }
@@ -53,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
         // 停止监听
         mUpdater.stop();
     }
