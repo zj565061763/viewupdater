@@ -5,8 +5,8 @@ plugins {
 
 def libGroupId = "com.sd.lib.android"
 def libArtifactId = "viewupdater"
-def libVersionCode = 20201210
-def libVersionName = "1.1.4"
+def libVersionCode = 20210610
+def libVersionName = "1.1.5"
 
 android {
     compileSdkVersion 30
