@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity
     protected void onResume()
     {
         super.onResume();
-
         // 开始监听
         mUpdater.start();
     }
@@ -53,7 +52,6 @@ public class MainActivity extends AppCompatActivity
     protected void onStop()
     {
         super.onStop();
-
         // 停止监听
         mUpdater.stop();
     }
@@ -65,7 +63,7 @@ public interface ViewUpdater {
     /**
      * 设置更新对象
      */
-    void setUpdatable(Updatable updatable);
+    void setUpdatable(@Nullable Updatable updatable);
 
     /**
      * 通知更新对象{@link #setUpdatable(Updatable)}
@@ -75,12 +73,13 @@ public interface ViewUpdater {
     /**
      * 返回设置的view
      */
+    @Nullable
     View getView();
 
     /**
      * 设置view
      */
-    void setView(View view);
+    void setView(@Nullable View view);
 
     /**
      * 是否已经开始监听
