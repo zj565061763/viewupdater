@@ -1,7 +1,8 @@
 package com.sd.lib.viewupdater.impl;
 
-import android.os.Build;
 import android.view.ViewTreeObserver;
+
+import androidx.annotation.NonNull;
 
 import com.sd.lib.viewupdater.ViewTreeObserverUpdater;
 
@@ -10,12 +11,12 @@ import com.sd.lib.viewupdater.ViewTreeObserverUpdater;
  */
 public class OnGlobalLayoutChangeUpdater extends ViewTreeObserverUpdater {
     @Override
-    protected void register(ViewTreeObserver observer) {
+    protected final void register(@NonNull ViewTreeObserver observer) {
         observer.addOnGlobalLayoutListener(mListener);
     }
 
     @Override
-    protected void unregister(ViewTreeObserver observer) {
+    protected final void unregister(@NonNull ViewTreeObserver observer) {
         observer.removeOnGlobalLayoutListener(mListener);
     }
 
