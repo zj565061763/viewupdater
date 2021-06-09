@@ -2,6 +2,8 @@ package com.sd.lib.viewupdater.impl;
 
 import android.view.View;
 
+import androidx.annotation.NonNull;
+
 import com.sd.lib.viewupdater.BaseViewUpdater;
 
 /**
@@ -9,21 +11,13 @@ import com.sd.lib.viewupdater.BaseViewUpdater;
  */
 public class OnLayoutChangeUpdater extends BaseViewUpdater {
     @Override
-    protected boolean startImpl(View view) {
-        if (view == null) {
-            return false;
-        }
-
+    protected boolean startImpl(@NonNull View view) {
         view.addOnLayoutChangeListener(mListener);
         return true;
     }
 
     @Override
-    protected void stopImpl(View view) {
-        if (view == null) {
-            return;
-        }
-
+    protected void stopImpl(@NonNull View view) {
         view.removeOnLayoutChangeListener(mListener);
     }
 
