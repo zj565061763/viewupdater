@@ -33,7 +33,6 @@ public abstract class BaseViewUpdater implements ViewUpdater {
         final View old = getView();
         if (old != view) {
             stop();
-
             mView = view == null ? null : new WeakReference<>(view);
             onViewChanged(old, view);
         }
@@ -44,7 +43,6 @@ public abstract class BaseViewUpdater implements ViewUpdater {
         if (getView() == null) {
             setStarted(false);
         }
-
         return mIsStarted;
     }
 
