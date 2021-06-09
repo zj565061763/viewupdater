@@ -2,11 +2,13 @@ package com.sd.lib.viewupdater;
 
 import android.view.View;
 
+import androidx.annotation.Nullable;
+
 public interface ViewUpdater {
     /**
      * 设置更新对象
      */
-    void setUpdatable(Updatable updatable);
+    void setUpdatable(@Nullable Updatable updatable);
 
     /**
      * 通知更新对象{@link #setUpdatable(Updatable)}
@@ -21,7 +23,7 @@ public interface ViewUpdater {
     /**
      * 设置view
      */
-    void setView(View view);
+    void setView(@Nullable View view);
 
     /**
      * 是否已经开始监听
