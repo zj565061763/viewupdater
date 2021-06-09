@@ -2,8 +2,7 @@ package com.sd.lib.viewupdater;
 
 import android.view.View;
 
-public interface ViewUpdater
-{
+public interface ViewUpdater {
     /**
      * 设置更新回调对象
      *
@@ -49,8 +48,7 @@ public interface ViewUpdater
      */
     void stop();
 
-    interface Updatable
-    {
+    interface Updatable {
         /**
          * 更新回调
          */

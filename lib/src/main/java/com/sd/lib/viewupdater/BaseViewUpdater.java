@@ -4,40 +4,34 @@ import android.view.View;
 
 import java.lang.ref.WeakReference;
 
-public abstract class BaseViewUpdater implements ViewUpdater
-{
+public abstract class BaseViewUpdater implements ViewUpdater {
     private boolean mIsStarted;
     private Updatable mUpdatable;
     private WeakReference<View> mView;
 
     @Override
-    public final void setUpdatable(Updatable updatable)
-    {
+    public final void setUpdatable(Updatable updatable) {
         mUpdatable = updatable;
     }
 
     @Override
-    public final void notifyUpdatable()
-    {
-        if (isStarted())
-        {
-            if (mUpdatable != null)
+    public final void notifyUpdatable() {
+        if (isStarted()) {
+            if (mUpdatable != null) {
                 mUpdatable.update();
+            }
         }
     }
 
     @Override
-    public final View getView()
-    {
+    public final View getView() {
         return mView == null ? null : mView.get();
     }
 
     @Override
-    public final void setView(View view)
-    {
+    public final void setView(View view) {
         final View old = getView();
-        if (old != view)
-        {
+        if (old != view) {
             stop();
 
             mView = view == null ? null : new WeakReference<>(view);
@@ -46,23 +40,24 @@ public abstract class BaseViewUpdater implements ViewUpdater
     }
 
     @Override
-    public final boolean isStarted()
-    {
-        if (getView() == null)
+    public final boolean isStarted() {
+        if (getView() == null) {
             setStarted(false);
+        }
 
         return mIsStarted;
     }
 
     @Override
-    public final boolean start()
-    {
-        if (isStarted())
+    public final boolean start() {
+        if (isStarted()) {
             return true;
+        }
 
         final View view = getView();
-        if (view == null)
+        if (view == null) {
             return false;
+        }
 
         final boolean startImpl = startImpl(view);
         setStarted(startImpl);
@@ -70,33 +65,28 @@ public abstract class BaseViewUpdater implements ViewUpdater
     }
 
     @Override
-    public final void stop()
-    {
-        if (mIsStarted)
-        {
+    public final void stop() {
+        if (mIsStarted) {
             final View view = getView();
-            if (view != null)
+            if (view != null) {
                 stopImpl(view);
+            }
 
             setStarted(false);
         }
     }
 
-    private final void setStarted(boolean started)
-    {
-        if (mIsStarted != started)
-        {
+    private final void setStarted(boolean started) {
+        if (mIsStarted != started) {
             mIsStarted = started;
             onStateChanged(started);
         }
     }
 
-    protected void onViewChanged(View oldView, View newView)
-    {
+    protected void onViewChanged(View oldView, View newView) {
     }
 
-    protected void onStateChanged(boolean started)
-    {
+    protected void onStateChanged(boolean started) {
     }
 
     /**

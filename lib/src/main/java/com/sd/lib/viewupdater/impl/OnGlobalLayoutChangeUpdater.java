@@ -8,25 +8,20 @@ import com.sd.lib.viewupdater.ViewTreeObserverUpdater;
 /**
  * 通过{@link ViewTreeObserver.OnGlobalLayoutListener}来实现更新
  */
-public class OnGlobalLayoutChangeUpdater extends ViewTreeObserverUpdater
-{
+public class OnGlobalLayoutChangeUpdater extends ViewTreeObserverUpdater {
     @Override
-    protected void register(ViewTreeObserver observer)
-    {
+    protected void register(ViewTreeObserver observer) {
         observer.addOnGlobalLayoutListener(mListener);
     }
 
     @Override
-    protected void unregister(ViewTreeObserver observer)
-    {
+    protected void unregister(ViewTreeObserver observer) {
         observer.removeOnGlobalLayoutListener(mListener);
     }
 
-    private final ViewTreeObserver.OnGlobalLayoutListener mListener = new ViewTreeObserver.OnGlobalLayoutListener()
-    {
+    private final ViewTreeObserver.OnGlobalLayoutListener mListener = new ViewTreeObserver.OnGlobalLayoutListener() {
         @Override
-        public void onGlobalLayout()
-        {
+        public void onGlobalLayout() {
             notifyUpdatable();
         }
     };

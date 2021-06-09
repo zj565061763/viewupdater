@@ -7,25 +7,20 @@ import com.sd.lib.viewupdater.ViewTreeObserverUpdater;
 /**
  * 通过{@link ViewTreeObserver.OnPreDrawListener}来实现更新
  */
-public class OnPreDrawUpdater extends ViewTreeObserverUpdater
-{
+public class OnPreDrawUpdater extends ViewTreeObserverUpdater {
     @Override
-    protected void register(ViewTreeObserver observer)
-    {
+    protected void register(ViewTreeObserver observer) {
         observer.addOnPreDrawListener(mListener);
     }
 
     @Override
-    protected void unregister(ViewTreeObserver observer)
-    {
+    protected void unregister(ViewTreeObserver observer) {
         observer.removeOnPreDrawListener(mListener);
     }
 
-    private final ViewTreeObserver.OnPreDrawListener mListener = new ViewTreeObserver.OnPreDrawListener()
-    {
+    private final ViewTreeObserver.OnPreDrawListener mListener = new ViewTreeObserver.OnPreDrawListener() {
         @Override
-        public boolean onPreDraw()
-        {
+        public boolean onPreDraw() {
             notifyUpdatable();
             return true;
         }

@@ -10,35 +10,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.sd.lib.viewupdater.ViewUpdater;
 import com.sd.lib.viewupdater.impl.OnPreDrawUpdater;
 
-public class MainActivity extends AppCompatActivity
-{
+public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getSimpleName();
 
     private Button mButton;
     private final ViewUpdater mUpdater = new OnPreDrawUpdater();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mButton = findViewById(R.id.button);
-        mButton.setOnClickListener(new View.OnClickListener()
-        {
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 // 切换选中状态
                 v.setSelected(!v.isSelected());
             }
         });
 
         // 设置更新回调对象
-        mUpdater.setUpdatable(new ViewUpdater.Updatable()
-        {
+        mUpdater.setUpdatable(new ViewUpdater.Updatable() {
             @Override
-            public void update()
-            {
+            public void update() {
                 // 获得选中状态
                 Log.i(TAG, "update:" + mButton.isSelected());
             }
@@ -49,8 +43,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
 
         // 开始监听
@@ -58,8 +51,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         super.onStop();
 
         // 停止监听

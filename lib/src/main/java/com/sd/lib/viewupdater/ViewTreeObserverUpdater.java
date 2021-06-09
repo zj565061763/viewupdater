@@ -3,52 +3,48 @@ package com.sd.lib.viewupdater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
-{
+public abstract class ViewTreeObserverUpdater extends BaseViewUpdater {
     @Override
-    protected void onStateChanged(boolean started)
-    {
+    protected void onStateChanged(boolean started) {
         super.onStateChanged(started);
 
         final View view = getView();
-        if (view != null)
-        {
+        if (view != null) {
             view.removeOnAttachStateChangeListener(mOnAttachStateChangeListener);
-            if (started)
+            if (started) {
                 view.addOnAttachStateChangeListener(mOnAttachStateChangeListener);
+            }
         }
     }
 
-    private final View.OnAttachStateChangeListener mOnAttachStateChangeListener = new View.OnAttachStateChangeListener()
-    {
+    private final View.OnAttachStateChangeListener mOnAttachStateChangeListener = new View.OnAttachStateChangeListener() {
         @Override
-        public void onViewAttachedToWindow(View v)
-        {
-            if (v != getView())
+        public void onViewAttachedToWindow(View v) {
+            if (v != getView()) {
                 throw new RuntimeException("v != getView()");
+            }
 
             startImpl(v);
         }
 
         @Override
-        public void onViewDetachedFromWindow(View v)
-        {
-            if (v != getView())
+        public void onViewDetachedFromWindow(View v) {
+            if (v != getView()) {
                 throw new RuntimeException("v != getView()");
+            }
 
             stopImpl(v);
         }
     };
 
     @Override
-    protected final boolean startImpl(View view)
-    {
-        if (view == null)
+    protected final boolean startImpl(View view) {
+        if (view == null) {
             return false;
+        }
 
         final ViewTreeObserver observer = view.getViewTreeObserver();
-        if (observer.isAlive())
-        {
+        if (observer.isAlive()) {
             unregister(observer);
             register(observer);
             return true;
@@ -57,14 +53,15 @@ public abstract class ViewTreeObserverUpdater extends BaseViewUpdater
     }
 
     @Override
-    protected final void stopImpl(View view)
-    {
-        if (view == null)
+    protected final void stopImpl(View view) {
+        if (view == null) {
             return;
+        }
 
         final ViewTreeObserver observer = view.getViewTreeObserver();
-        if (observer.isAlive())
+        if (observer.isAlive()) {
             unregister(observer);
+        }
     }
 
     /**
