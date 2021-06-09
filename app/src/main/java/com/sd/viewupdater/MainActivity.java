@@ -15,7 +15,13 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private Button mButton;
-    private final ViewUpdater mUpdater = new OnPreDrawUpdater();
+    private final ViewUpdater mUpdater = new OnPreDrawUpdater() {
+        @Override
+        protected void onStateChanged(boolean started) {
+            super.onStateChanged(started);
+            Log.i(TAG, "onStateChanged started:" + started);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
