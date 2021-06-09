@@ -3,36 +3,31 @@
 
 # 简单demo
 ```java
-public class MainActivity extends AppCompatActivity
-{
-    public static final String TAG = MainActivity.class.getSimpleName();
+public class MainActivity extends AppCompatActivity {
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     private Button mButton;
     private final ViewUpdater mUpdater = new OnPreDrawUpdater();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mButton = findViewById(R.id.button);
-        mButton.setOnClickListener(new View.OnClickListener()
-        {
+        mButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
+            public void onClick(View v) {
                 // 切换选中状态
                 v.setSelected(!v.isSelected());
             }
         });
 
-        // 设置状态变更回调
-        mUpdater.setOnStateChangeCallback(new ViewUpdater.OnStateChangeCallback()
-        {
+        // 设置更新回调对象
+        mUpdater.setUpdatable(new ViewUpdater.Updatable() {
             @Override
-            public void onStateChanged(boolean started, ViewUpdater updater)
-            {
-                Log.i(TAG, "onStateChanged:" + started);
+            public void update() {
+                // 获得选中状态
+                Log.i(TAG, "update:" + mButton.isSelected());
             }
         });
 
@@ -41,16 +36,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         // 开始监听
         mUpdater.start();
     }
 
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         super.onStop();
         // 停止监听
         mUpdater.stop();
