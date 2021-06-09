@@ -2,6 +2,8 @@ package com.sd.lib.viewupdater.impl;
 
 import android.view.ViewTreeObserver;
 
+import androidx.annotation.NonNull;
+
 import com.sd.lib.viewupdater.ViewTreeObserverUpdater;
 
 /**
@@ -9,12 +11,12 @@ import com.sd.lib.viewupdater.ViewTreeObserverUpdater;
  */
 public class OnPreDrawUpdater extends ViewTreeObserverUpdater {
     @Override
-    protected void register(ViewTreeObserver observer) {
+    protected final void register(@NonNull ViewTreeObserver observer) {
         observer.addOnPreDrawListener(mListener);
     }
 
     @Override
-    protected void unregister(ViewTreeObserver observer) {
+    protected final void unregister(@NonNull ViewTreeObserver observer) {
         observer.removeOnPreDrawListener(mListener);
     }
 
