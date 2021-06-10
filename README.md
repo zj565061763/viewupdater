@@ -1,3 +1,6 @@
+#Deprecated
+这个库已经废弃，后续不再维护，功能已经迁移整合到另一个库：[viewtracker](https://github.com/zj565061763/viewtracker)
+
 # Gradle
 [![](https://jitpack.io/v/zj565061763/viewupdater.svg)](https://jitpack.io/#zj565061763/viewupdater)
 
